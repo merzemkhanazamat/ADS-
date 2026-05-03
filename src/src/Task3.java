@@ -2,10 +2,10 @@ import java.util.Scanner;
 
 public class Task3 {
 
-    static void bubbleSort(int[] arr) {
-        int n = arr.length;
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
+    static void sortNumbers(int[] arr) {
+        int length = arr.length;
+        for (int i = 0; i < length - 1; i++) {
+            for (int j = 0; j < length - i - 1; j++) {
                 if (arr[j] > arr[j + 1]) {
                     int temp = arr[j];
                     arr[j] = arr[j + 1];
@@ -15,16 +15,22 @@ public class Task3 {
         }
     }
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
+    static void findMedian() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter size of array: ");
+        int size = scanner.nextInt();
+        int[] numbers = new int[size];
+        System.out.print("Enter elements: ");
+        for (int i = 0; i < size; i++) {
+            numbers[i] = scanner.nextInt();
         }
 
-        bubbleSort(arr);
+        sortNumbers(numbers);
 
-        System.out.println(arr[n / 2]);
+        System.out.println(numbers[size / 2]);
+    }
+
+    public static void main(String[] args) {
+        findMedian();
     }
 }

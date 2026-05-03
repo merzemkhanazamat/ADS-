@@ -2,10 +2,10 @@ import java.util.Scanner;
 
 public class Task1 {
 
-    static void bubbleSort(char[] arr) {
-        int n = arr.length;
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
+    static void sortCharacters(char[] arr) {
+        int length = arr.length;
+        for (int i = 0; i < length - 1; i++) {
+            for (int j = 0; j < length - i - 1; j++) {
                 if (arr[j] > arr[j + 1]) {
                     char temp = arr[j];
                     arr[j] = arr[j + 1];
@@ -15,27 +15,33 @@ public class Task1 {
         }
     }
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        char[] s1 = sc.next().toCharArray();
-        char[] s2 = sc.next().toCharArray();
+    static void checkAnagram() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter first word: ");
+        char[] firstWord = scanner.next().toCharArray();
+        System.out.print("Enter second word: ");
+        char[] secondWord = scanner.next().toCharArray();
 
-        if (s1.length != s2.length) {
+        if (firstWord.length != secondWord.length) {
             System.out.println("NO");
             return;
         }
 
-        bubbleSort(s1);
-        bubbleSort(s2);
+        sortCharacters(firstWord);
+        sortCharacters(secondWord);
 
         boolean isAnagram = true;
-        for (int i = 0; i < s1.length; i++) {
-            if (s1[i] != s2[i]) {
+        for (int i = 0; i < firstWord.length; i++) {
+            if (firstWord[i] != secondWord[i]) {
                 isAnagram = false;
                 break;
             }
         }
 
         System.out.println(isAnagram ? "YES" : "NO");
+    }
+
+    public static void main(String[] args) {
+        checkAnagram();
     }
 }
