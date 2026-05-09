@@ -1,0 +1,76 @@
+Task 2 - BFS trace
+Source node: A
+
+Graph adjacency lists:
+A: C B D
+B: A C E G
+C: A B D
+D: C A
+E: G F B
+F: G E
+G: F B
+
+BFS uses a queue (FIFO). We start from A, add it to queue, then process neighbors level by level.
+
+marked[] - keeps track of visited nodes
+edgeTo[] - keeps track of how we got to each node
+distTo[] - distance (number of edges) from source
+
+Start: mark A, add to queue
+  queue: [A]
+  distTo[A] = 0
+
+Dequeue A:
+  A's neighbors: C, B, D
+  C - not visited -> mark C, edgeTo[C]=A, distTo[C]=1, enqueue
+  B - not visited -> mark B, edgeTo[B]=A, distTo[B]=1, enqueue
+  D - not visited -> mark D, edgeTo[D]=A, distTo[D]=1, enqueue
+  queue: [C, B, D]
+  visited: A, C, B, D
+
+Dequeue C:
+  C's neighbors: A, B, D
+  A - visited, skip
+  B - visited, skip
+  D - visited, skip
+  queue: [B, D]
+
+Dequeue B:
+  B's neighbors: A, C, E, G
+  A - visited, skip
+  C - visited, skip
+  E - not visited -> mark E, edgeTo[E]=B, distTo[E]=2, enqueue
+  G - not visited -> mark G, edgeTo[G]=B, distTo[G]=2, enqueue
+  queue: [D, E, G]
+  visited: A, C, B, D, E, G
+
+Dequeue D:
+  D's neighbors: C, A
+  C - visited, skip
+  A - visited, skip
+  queue: [E, G]
+
+Dequeue E:
+  E's neighbors: G, F, B
+  G - visited, skip
+  F - not visited -> mark F, edgeTo[F]=E, distTo[F]=3, enqueue
+  B - visited, skip
+  queue: [G, F]
+  visited: A, C, B, D, E, G, F
+
+Dequeue G:
+  G's neighbors: F, B
+  F - visited, skip
+  B - visited, skip
+  queue: [F]
+
+Dequeue F:
+  F's neighbors: G, E
+  G - visited, skip
+  E - visited, skip
+  queue: [] -> empty, done
+
+distTo[]: A=0, C=1, B=1, D=1, E=2, G=2, F=3
+edgeTo[]: C<-A, B<-A, D<-A, E<-B, G<-B, F<-E
+
+BFS order: A C B D E G F

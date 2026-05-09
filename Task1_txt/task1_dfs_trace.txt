@@ -1,0 +1,71 @@
+Task 1 - DFS trace
+Source node: A
+
+Graph adjacency lists:
+A: C B D
+B: A C E G
+C: A B D
+D: C A
+E: G F B
+F: G E
+G: F B
+
+DFS uses a stack. We start from A, mark it visited, then go to the first unvisited neighbor. If no unvisited neighbors left we backtrack.
+
+marked[] - keeps track of visited nodes
+edgeTo[] - keeps track of how we got to each node
+
+Start: mark A as visited
+  visited: A
+  A's neighbors: C, B, D -> go to C (first unvisited)
+
+Go to C: mark C as visited
+  visited: A, C
+  edgeTo[C] = A
+  C's neighbors: A, B, D -> A already visited, go to B
+
+Go to B: mark B as visited
+  visited: A, C, B
+  edgeTo[B] = C
+  B's neighbors: A, C, E, G -> A and C already visited, go to E
+
+Go to E: mark E as visited
+  visited: A, C, B, E
+  edgeTo[E] = B
+  E's neighbors: G, F, B -> B already visited, go to G
+
+Go to G: mark G as visited
+  visited: A, C, B, E, G
+  edgeTo[G] = E
+  G's neighbors: F, B -> B already visited, go to F
+
+Go to F: mark F as visited
+  visited: A, C, B, E, G, F
+  edgeTo[F] = G
+  F's neighbors: G, E -> both already visited
+  backtrack to G
+
+Back at G: no more unvisited neighbors
+  backtrack to E
+
+Back at E: F and B both visited
+  backtrack to B
+
+Back at B: G already visited
+  backtrack to C
+
+Back at C: go to D (still unvisited)
+
+Go to D: mark D as visited
+  visited: A, C, B, E, G, F, D
+  edgeTo[D] = C
+  D's neighbors: C, A -> both visited
+  backtrack to C
+
+Back at C: done
+Back at A: B and D both visited, done
+
+marked[] final: A=true B=true C=true D=true E=true F=true G=true
+edgeTo[] final: C<-A, B<-C, E<-B, G<-E, F<-G, D<-C
+
+DFS order: A C B E G F D

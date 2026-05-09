@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ADS-.iml" filepath="$PROJECT_DIR$/ADS-.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Task3_java/Task3_java.iml" filepath="$PROJECT_DIR$/Task3_java/Task3_java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Task5_java/Task5_java.iml" filepath="$PROJECT_DIR$/Task5_java/Task5_java.iml" />
+    </modules>
+  </component>
+</project>
